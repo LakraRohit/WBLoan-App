@@ -20,8 +20,9 @@ import GiffGt from '../../assets/giff9.gif';
 // import Giff17 from '../../assets/giff17.gif';
 import { FaHamburger, FaInstagramSquare, FaTwitter } from "react-icons/fa";
 import { IoLogoFacebook } from "react-icons/io";
+import { Link } from 'react-router-dom';
 import Giff18 from '../../assets/giff18.gif';
-// or
+
 
 
 
@@ -79,6 +80,82 @@ const HomePage = () => {
     };
 
 
+    // GetAppClickFunction 
+    const getApp =()=>{
+      alert("Get App Button is Clicked")
+    }
+
+
+    // LogIn Function 
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleLogin = (e) => {
+      e.preventDefault();
+  
+      // Check if any of the fields are empty
+      if (!name || !email || !password) {
+        alert('Fill the form');
+        return;
+      }
+  
+      // Proceed with login (you can replace this with actual login logic)
+      alert('You are logged in');
+  
+      // Clear the form
+      setName('');
+      setEmail('');
+      setPassword('');
+    };
+
+
+    // CREDIT sCORE bUTTON 
+    const [mobileNumber, setMobileNumber] = useState('');
+
+    const handleCheckCredit = (e) => {
+      e.preventDefault();
+  
+      // Check if the input field is empty
+      if (!mobileNumber) {
+        alert('Enter your mobile number');
+        return;
+      }
+  
+      // Proceed with checking the credit score (you can replace this with actual logic)
+      alert('Your Credit Score will be available soon');
+  
+      // Clear the input
+      setMobileNumber('');
+    };
+
+
+    // Querries button 
+    const [qname, qsetName] = useState('');
+    const [qemail, qsetEmail] = useState('');
+    const [query, setQuery] = useState('');
+  
+    const handleSendQuery = (e) => {
+      e.preventDefault();
+  
+      // Check if any of the fields are empty
+      if (!qname || !qemail || !query) {
+        alert('Please fill out all fields');
+        return;
+      }
+  
+      // Process the query (you can replace this with actual logic)
+      alert('We have received your query and will contact you soon');
+  
+      // Clear the input fields
+      qsetName('');
+      qsetEmail('');
+      setQuery('');
+    };
+
+
+
+
 
 
   
@@ -95,11 +172,11 @@ const HomePage = () => {
 
         {/* Nav Bar Items (hidden on small and medium screens) */}
         <div className='hidden lg:flex flex-col sm:flex-row text-white gap-3 sm:gap-5 '>
-          <div className='hover:scale-105 cursor-pointer duration-300'>Personal Loan</div>
+          <div className='hover:scale-105 cursor-pointer duration-300' ><a href='#PL'>Personal Loan</a></div>
           <div className='hidden sm:block'>|</div>
-          <div className='hover:scale-105 cursor-pointer duration-300'>Credit Tracker</div>
+          <div className='hover:scale-105 cursor-pointer duration-300'> <a href="#CD">Credit Tracker</a> </div>
           <div className='hidden sm:block'>|</div>
-          <div className='hover:scale-105 cursor-pointer duration-300'>EMI Calculator</div>
+          <div className='hover:scale-105 cursor-pointer duration-300'> <Link to="/emi-calculator">EMI Calculator</Link></div>
           <div className='hidden sm:block'>|</div>
           <div className="relative">
             {/* More Button */}
@@ -132,11 +209,16 @@ const HomePage = () => {
             )}
           </div>
           <div className='hidden sm:block'>|</div>
-          <div className='hover:scale-105 cursor-pointer duration-300'>Contact Us</div>
+          <div className='hover:scale-105 cursor-pointer duration-300'><a href="#CS">Contact Us</a></div>
         </div>
+
+        
+        <Link to="/signup">
         <button className=' hidden lg:block mr-5 w-28 h-10 text-white bg-blue-500 rounded-md active:bg-blue-600 active:scale-95 duration-100 shadow-blue-800 shadow-md'>
-            SignUp Now
+        SignUp Now
         </button>
+        </Link>
+
 
         {/* Hamburger Icon (shown on small and medium screens) */}
         <div className='block lg:hidden pr-3 sm:pr-5'>
@@ -167,7 +249,7 @@ const HomePage = () => {
             <li className='hover:bg-blue-100 px-4 py-2 cursor-pointer'>WB Gold Loans</li>
             <li className='mt-5'>
               <button className='w-full h-10 text-white bg-blue-500 rounded-md active:bg-blue-600 active:scale-95 duration-100 shadow-blue-800 shadow-md'>
-                SignUp Now
+              <Link to="/signup">SignUp Now</Link>
               </button>
             </li>
           </ul>
@@ -197,14 +279,26 @@ const HomePage = () => {
             <h1 className='text-white mt-2 md:text-2xl flex'>
               <p className=''>You don't chase  money, you only chase your dreams. We got your back.</p>
             </h1>
-            <input className='w-11/12 h-11 bg-white/20 rounded-lg mt-2 md:mt-5 pl-3 placeholder:text-white focus:outline-none focus:border-b-2 focus:border-white' placeholder='Ente Name...'></input>
-            <input className='w-11/12 h-11 bg-white/20 rounded-lg mt-2 md:mt-5 pl-3 placeholder:text-white focus:outline-none focus:border-b-2 focus:border-white' placeholder='Ente E-mailId...'></input>
-            <input className='w-11/12 h-11 bg-white/20 rounded-lg mt-2 md:mt-5 pl-3 placeholder:text-white focus:outline-none focus:border-b-2 focus:border-white' type='password' placeholder='Ente Password...'></input>
+            <input
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+             className='w-11/12 h-11 bg-white/20 rounded-lg mt-2 md:mt-5 pl-3 placeholder:text-white focus:outline-none focus:border-b-2 focus:border-white' placeholder='Ente Name...'></input>
+            <input
+                     value={email}
+                     onChange={(e) => setEmail(e.target.value)}
+            className='w-11/12 h-11 bg-white/20 rounded-lg mt-2 md:mt-5 pl-3 placeholder:text-white focus:outline-none focus:border-b-2 focus:border-white' placeholder='Ente E-mailId...'></input>
+            <input
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)} 
+            className='w-11/12 h-11 bg-white/20 rounded-lg mt-2 md:mt-5 pl-3 placeholder:text-white focus:outline-none focus:border-b-2 focus:border-white' type='password' placeholder='Ente Password...'></input>
             <div className='w-11/12 h-10  mt-8 flex justify-between items-center space-x-2 md:p-3'>
-              <button className='w-24 h-10 text-[12px] md:text-lg md:w-32 md:h-10 rounded-md text-white bg-blue-500 active:bg-blue-600 active:scale-95 duration-100 shadow-blue-800 shadow-md'>
+              <button
+                     onClick={handleLogin} 
+              className='w-24 h-10 text-[12px] md:text-lg md:w-32 md:h-10 rounded-md text-white bg-blue-500 active:bg-blue-600 active:scale-95 duration-100 shadow-blue-800 shadow-md'>
                 LogIn
               </button>
-              <button className='w-24 h-10 text-[12px] md:text-lg md:w-32 md:h-10 rounded-md text-white bg-blue-500 active:bg-blue-600 active:scale-95 duration-100 shadow-blue-800 shadow-md' >
+              <button onClick={getApp}
+              className='w-24 h-10 text-[12px] md:text-lg md:w-32 md:h-10 rounded-md text-white bg-blue-500 active:bg-blue-600 active:scale-95 duration-100 shadow-blue-800 shadow-md' >
                 Get the App 
               </button>
             </div>
@@ -213,6 +307,7 @@ const HomePage = () => {
 
 
       {/* Personal Loan  section */}
+      <div id="PL"></div>
       <div className='md:mt-44 mt-20 w-full  md:h-[600px] h-[950px]  flex flex-col items-center' >
           <div className='flex flex-col justify-center items-center'>
             <p className='text-3xl md:text-6xl text-blue-500 font-bold'>
@@ -287,6 +382,7 @@ const HomePage = () => {
 
 
       {/* EMI calculator */}
+      <div id="CD"></div>
       <div className='md:mt-44 mt-20 w-full  md:h-[600px] h-[950px]  flex flex-col md:flex-row justify-center items-center space-y-8 md:space-x-1'>
         <div>
           {/* title  */}
@@ -307,10 +403,17 @@ const HomePage = () => {
             animation: 'loopAnimation 3s infinite' // Custom CSS animation loop
           }}
            alt="" /> 
-          <input className='w-2/3 h-10 bg-blue-400/20 pl-3 rounded-md focus:outline-none focus:border-b-2 focus:border-blue-500' 
+          <input
+                   value={mobileNumber}
+                   onChange={(e) => setMobileNumber(e.target.value)}
+                   type='tel' // Use 'tel' type for mobile numbers
+                   required // Optional, to enforce input
+          className='w-2/3 h-10 bg-blue-400/20 pl-3 rounded-md focus:outline-none focus:border-b-2 focus:border-blue-500' 
           placeholder='Ente your Mobile Number...'>
           </input>
-          <button className='active:scale-95 active:bg-blue-600 bg-blue-500 mt-5 w-36 h-10 rounded-md text-white text-xl'>
+          <button
+                  onClick={handleCheckCredit} 
+          className='active:scale-95 active:bg-blue-600 bg-blue-500 mt-5 w-36 h-10 rounded-md text-white text-xl'>
             Check Credit
           </button>
           <div className='gap-3 w-full h-38 md:h-10 mt-5 flex flex-col md:flex-row justify-center  items-center'> 
@@ -327,12 +430,12 @@ const HomePage = () => {
         </div>
 
 
-        <div className=' hover:cursor-pointer md:w-1/2 w-full h-5/6 flex-col bg-blue-500 shadow-xl rounded-3xl shadow-blue-900 md:hover:scale-125 duration-200 flex justify-center items-center'>
+        <div className=' md:w-1/2 w-full h-5/6 flex-col bg-blue-500 shadow-xl rounded-3xl shadow-blue-900 md:hover:scale-125 duration-200 flex justify-center items-center'>
           <div className='md:text-5xl text-3xl text-white font-bold'>
             Calculate EMI
           </div>
-          <p className='text-white font-semibold'>
-            Click Me to Calculate
+          <p className='text-white font-semibold hover:cursor-pointer'>
+          <Link to="/emi-calculator">Click Me to Calculate 👈</Link>
           </p>
           <img
           className='w-56 mt-2' 
@@ -416,7 +519,7 @@ const HomePage = () => {
 
 {/* contact us Section  */}
 
-  <div 
+  <div id='CS'
                   style={{ 
                     backgroundImage: `url(${GiffQry})`, 
                     // backgroundSize: '350px 350px' , // Size of the GIF 
@@ -434,12 +537,23 @@ const HomePage = () => {
   Timings: Monday to Saturday - 9 am to 6 pm - Excluding public holidays
   </span>
   </p>
-  <input className='bg-white/50 text-black w-11/12 h-12 mt-5 pl-5 focus:outline-none rounded-md' placeholder='Name...'></input>
-  <input className='bg-white/50 text-black w-11/12 h-12 mt-5 pl-5 focus:outline-none rounded-md' placeholder='E-Mail...'></input>
-  <textarea 
+  <input 
+          value={qname}
+          onChange={(e) => qsetName(e.target.value)}
+  className='bg-white/50 text-black w-11/12 h-12 mt-5 pl-5 focus:outline-none rounded-md' placeholder='Name...'></input>
+  <input
+          value={qemail}
+          onChange={(e) => qsetEmail(e.target.value)}
+          type='email' // Optional: for better email input handling 
+  className='bg-white/50 text-black w-11/12 h-12 mt-5 pl-5 focus:outline-none rounded-md' placeholder='E-Mail...'></input>
+  <textarea
+          value={query}
+          onChange={(e) => setQuery(e.target.value)} 
     className='bg-white/50 text-black  w-11/12 mt-5 pl-5 h-36 p-3 focus:outline-none rounded-md' placeholder='Write your Queries here...'>
   </textarea>
-  <div className='w-11/12 '>
+  <div
+            onClick={handleSendQuery} 
+  className='w-11/12 '>
     <button className='w-32 h-12 bg-blue-600 mt-5 text-white rounded-md font-semibold active:bg-blue-700 active:scale-95'>
       Send Query
     </button>

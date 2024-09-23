@@ -1,10 +1,48 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FaHome, FaInstagramSquare, FaTwitter } from "react-icons/fa";
 import { IoLogoFacebook } from "react-icons/io";
+import { useNavigate } from 'react-router-dom';
 import Bg2 from '../../assets/Bg2.jpg';
 import Giff10 from '../../assets/giff10.gif';
 
 const SignUpPage = () => {
+
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [aadhar, setAadhar] = useState('');
+  
+    const handleSignup = (e) => {
+      e.preventDefault();
+  
+      // Check if any of the fields are empty
+      if (!name || !email || !aadhar) {
+        alert('Please fill out all fields');
+        return;
+      }
+  
+      // Process the signup (you can replace this with actual logic)
+      alert('We are proceeding with your Loan');
+  
+      // Clear the input fields
+      setName('');
+      setEmail('');
+      setAadhar('');
+    };
+
+
+    const gotoApp=()=>{
+        alert("Get App Button is")
+    }
+
+
+    const navigate = useNavigate();
+
+    const handleGoBack = () => {
+      navigate(-1); // Navigate back to the previous page
+    };
+
+
+
   return (
     <div>
       <div className='w-full flex justify-center items-center flex-col'>
@@ -13,7 +51,9 @@ const SignUpPage = () => {
           <div className='font-sans font-bold text-white text-4xl sm:text-6xl pl-3 sm:pl-5'>
             <span className='text-blue-700'>W</span>B.
           </div>
-          <div>
+          <div
+          className='hover:cursor-pointer' 
+          onClick={handleGoBack}>
             <FaHome className='text-white text-4xl' />
           </div>
         </div>
@@ -45,14 +85,28 @@ const SignUpPage = () => {
             <h1 className='text-white mt-2 md:text-2xl flex'>
               <p>One Solution, for  all your Financial Problems.</p>
             </h1>
-            <input className='w-11/12 h-11 bg-white/50 rounded-lg mt-2 md:mt-5 pl-3 placeholder:text-black focus:outline-none focus:border-b-2 focus:border-white' placeholder='Enter Name...' />
-            <input className='w-11/12 h-11 bg-white/50 rounded-lg mt-2 md:mt-5 pl-3 placeholder:text-black focus:outline-none focus:border-b-2 focus:border-white' placeholder='Enter E-mailId...' />
-            <input className='w-11/12 h-11 bg-white/50 rounded-lg mt-2 md:mt-5 pl-3 placeholder:text-black focus:outline-none focus:border-b-2 focus:border-white' type='text' placeholder='Enter Aadhar Number...' />
+            <input
+            value={name}
+            onChange={(e) => setName(e.target.value)} 
+            className='w-11/12 h-11 bg-white/50 rounded-lg mt-2 md:mt-5 pl-3 placeholder:text-black focus:outline-none focus:border-b-2 focus:border-white' placeholder='Enter Name...' />
+            <input
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    type='email' // Optional: for better email input handling
+            className='w-11/12 h-11 bg-white/50 rounded-lg mt-2 md:mt-5 pl-3 placeholder:text-black focus:outline-none focus:border-b-2 focus:border-white' placeholder='Enter E-mailId...' />
+            <input
+                    value={aadhar}
+                    onChange={(e) => setAadhar(e.target.value)}
+                    type='text' // You can also validate Aadhar format if needed
+             className='w-11/12 h-11 bg-white/50 rounded-lg mt-2 md:mt-5 pl-3 placeholder:text-black focus:outline-none focus:border-b-2 focus:border-white' type='text' placeholder='Enter Aadhar Number...' />
             <div className='w-11/12 h-10 mt-8 flex justify-between items-center space-x-2 md:p-3'>
-              <button className='w-24 h-10 text-[12px] md:text-lg md:w-48 md:h-10 rounded-md text-white bg-blue-500 active:bg-blue-600 active:scale-95 duration-100 shadow-blue-800 shadow-md'>
+              <button           onClick={handleSignup}
+               className='w-24 h-10 text-[12px] md:text-lg md:w-48 md:h-10 rounded-md text-white bg-blue-500 active:bg-blue-600 active:scale-95 duration-100 shadow-blue-800 shadow-md'>
                 Proceed and SignUp
               </button>
-              <button className='w-24 h-10 text-[12px] md:text-lg md:w-32 md:h-10 rounded-md text-white bg-blue-500 active:bg-blue-600 active:scale-95 duration-100 shadow-blue-800 shadow-md'>
+              <button
+              onClick={gotoApp} 
+              className='w-24 h-10 text-[12px] md:text-lg md:w-32 md:h-10 rounded-md text-white bg-blue-500 active:bg-blue-600 active:scale-95 duration-100 shadow-blue-800 shadow-md'>
                 Get the App 
               </button>
             </div>
