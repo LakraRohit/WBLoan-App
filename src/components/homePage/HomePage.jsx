@@ -473,7 +473,7 @@ const HomePage = () => {
                         }} 
       className='w-full h-auto  md:bg-[length:1350px_1350px] bg-[length:500px_500px] flex flex-col justify-center items-center mt-20  md:mt-44 '> 
         <span className='text-blue-500 text-xl md:text-3xl font-medium'>
-        Testamomies
+        Testimonies
         </span>
   {/* GIF or Image at the Top */}
   <div 
